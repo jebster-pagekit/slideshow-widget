@@ -23,13 +23,21 @@
                     </div>
                 </div>
                 <div class="uk-form-row">
-                    <label class="uk-form-label">{{ 'Text' | trans }}</label>
+                    <label class="uk-form-label">{{ 'Header' | trans }}</label>
                     <div class="uk-form-controls">
-                        <input type="text" class="uk-form-width-large" v-model="image.text">&nbsp;&nbsp;
-                        <button @click="removeImage(image)" class="uk-button uk-button-danger">
-                            {{ 'Remove image' | trans}}
-                        </button>
+                        <input type="text" class="uk-form-width-large" v-model="image.header">&nbsp;&nbsp;
                     </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label">{{ 'Text' | trans}}</label>
+                    <div class="uk-form-controls">
+                        <v-editor :value.sync="image.text" :options="{markdown : post.data.markdown, height: 250}"></v-editor>
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <button @click="removeImage(image)" class="uk-button uk-button-danger">
+                        {{ 'Remove image' | trans}}
+                    </button>
                 </div>
                 <hr>
             </div>

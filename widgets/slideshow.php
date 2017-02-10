@@ -15,9 +15,9 @@ return [
     ],
 
     'render' => function ($widget) use ($app) {
-        $image = $widget->get('image');
+        $images = $widget->get('images');
         $config = $widget->get('config');
 
-        return $app->view('slideshow-widget/widget/slideshow.php', compact('image', 'config'));
+        return $app->view('slideshow-widget/widget/slideshow.php', compact('images', 'config'));
     }
 ];

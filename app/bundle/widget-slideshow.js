@@ -85,13 +85,22 @@
 	    },
 	    replace: false,
 	    props: ['widget', 'config', 'form'],
-
+	    data: function data() {
+	        return {};
+	    },
 	    created: function created() {
 	        this.$options.partials = this.$parent.$options.partials;
 	    },
 
 
-	    methods: {}
+	    methods: {
+	        addImage: function addImage() {
+	            this.widget.data.images.push({});
+	        },
+	        removeImage: function removeImage(image) {
+	            this.widget.data.images.$remove(image);
+	        }
+	    }
 	};
 	window.Widgets.components['jebster-slideshow-widget:settings'] = module.exports;
 
@@ -99,7 +108,7 @@
 /* 2 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n<div class=\"uk-grid pk-grid-large\" data-uk-grid-margin>\n    <div class=\"uk-flex-item-1 uk-form-horizontal\">\n\n        <div class=\"uk-form-row\">\n            <label for=\"form-title\" class=\"uk-form-label\">{{ 'Title' | trans }}</label>\n            <div class=\"uk-form-controls\">\n                <input id=\"form-title\" class=\"uk-form-width-large\" type=\"text\" name=\"title\" v-model=\"widget.title\" v-validate:required>\n                <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.title.invalid\">{{ 'Title cannot be blank.' | trans }}</p>\n            </div>\n        </div>\n        <div class=\"uk-form-row\">\n            <label class=\"uk-form-label\" for=\"form-test\">{{ 'Test' | trans}}</label>\n            <div class=\"uk-form-controls\">\n                <input id=\"form-test\" class=\"uk-form-width-large\" type=\"text\" name=\"test\" v-model=\"widget.data.test\">\n            </div>\n        </div>\n        <div class=\"uk-form-row\">\n            <label class=\"uk-form-label\">{{ 'Images' | trans }}</label>\n\n            <div class=\"uk-form-controls\">\n                <input-image-meta :image.sync=\"widget.data.image\" class=\"pk-image-max-height\"></input-image-meta> <!-- :image.sync=\"project.image.main\" -->\n            </div>\n        </div>\n\n    </div>\n\n    <div class=\"pk-width-sidebar pk-width-sidebar-large\">\n        <div class=\"uk-form-row\">\n            <label for=\"form-height\" class=\"uk-form-label\">{{ 'Height' | trans }}</label>\n            <div class=\"uk-form-controls\">\n                <input id=\"form-height\" class=\"uk-width-1-1\" type=\"text\" v-model=\"widget.data.config.height\">\n            </div>\n        </div>\n\n        <partial name=\"settings\"></partial>\n\n    </div>\n</div>\n\n";
+	module.exports = "\n<div class=\"uk-grid pk-grid-large\" data-uk-grid-margin>\n    <div class=\"uk-flex-item-1 uk-form-horizontal\">\n\n        <div class=\"uk-form-row\">\n            <label for=\"form-title\" class=\"uk-form-label\">{{ 'Title' | trans }}</label>\n            <div class=\"uk-form-controls\">\n                <input id=\"form-title\" class=\"uk-form-width-large\" type=\"text\" name=\"title\" v-model=\"widget.title\" v-validate:required>\n                <p class=\"uk-form-help-block uk-text-danger\" v-show=\"form.title.invalid\">{{ 'Title cannot be blank.' | trans }}</p>\n            </div>\n        </div>\n\n        <div class=\"uk-form-row\">\n            <h1 class=\"uk-margin-remove\">{{ 'Images' | trans }}</h1>\n        </div>\n        <hr>\n        <div v-for=\"image in widget.data.images\">\n            <div class=\"uk-form-row\">\n                <label class=\"uk-form-label\">{{ 'Image' | trans }}</label>\n\n                <div class=\"uk-form-controls\">\n                    <input-image-meta :image.sync=\"image\" class=\"pk-image-max-height\"></input-image-meta>\n                </div>\n            </div>\n            <div class=\"uk-form-row\">\n                <label class=\"uk-form-label\">{{ 'Text' | trans }}</label>\n                <div class=\"uk-form-controls\">\n                    <input type=\"text\" class=\"uk-form-width-large\" v-model=\"image.text\">&nbsp;&nbsp;\n                    <button @click=\"removeImage(image)\" class=\"uk-button uk-button-danger\">\n                        {{ 'Remove image' | trans}}\n                    </button>\n                </div>\n            </div>\n            <hr>\n        </div>\n\n        <div class=\"uk-form-row\">\n            <div class=\"uk-form-controls\">\n                <!-- TODO: No idea why it goes and saves the widget when pressing! -->\n                <button @click=\"addImage()\" class=\"uk-button uk-button-primary\">{{ 'Add image' | trans}}</button>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"pk-width-sidebar pk-width-sidebar-large\">\n        <div class=\"uk-form-row\">\n            <label for=\"form-height\" class=\"uk-form-label\">{{ 'Height' | trans }}</label>\n            <div class=\"uk-form-controls\">\n                <input id=\"form-height\" class=\"uk-width-1-1\" type=\"text\" v-model=\"widget.data.config.height\">\n            </div>\n        </div>\n\n        <partial name=\"settings\"></partial>\n\n    </div>\n</div>\n\n";
 
 /***/ }
 /******/ ]);

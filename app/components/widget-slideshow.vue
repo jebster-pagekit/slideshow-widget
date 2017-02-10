@@ -1,5 +1,4 @@
 <template>
-
     <div class="uk-grid pk-grid-large" data-uk-grid-margin>
         <div class="uk-flex-item-1 uk-form-horizontal">
 
@@ -10,20 +9,37 @@
                     <p class="uk-form-help-block uk-text-danger" v-show="form.title.invalid">{{ 'Title cannot be blank.' | trans }}</p>
                 </div>
             </div>
+
             <div class="uk-form-row">
-                <label class="uk-form-label" for="form-test">{{ 'Test' | trans}}</label>
+                <h1 class="uk-margin-remove">{{ 'Images' | trans }}</h1>
+            </div>
+            <hr>
+            <div v-for="image in widget.data.images">
+                <div class="uk-form-row">
+                    <label class="uk-form-label">{{ 'Image' | trans }}</label>
+
+                    <div class="uk-form-controls">
+                        <input-image-meta :image.sync="image" class="pk-image-max-height"></input-image-meta>
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label">{{ 'Text' | trans }}</label>
+                    <div class="uk-form-controls">
+                        <input type="text" class="uk-form-width-large" v-model="image.text">&nbsp;&nbsp;
+                        <button @click="removeImage(image)" class="uk-button uk-button-danger">
+                            {{ 'Remove image' | trans}}
+                        </button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <div class="uk-form-row">
                 <div class="uk-form-controls">
-                    <input id="form-test" class="uk-form-width-large" type="text" name="test" v-model="widget.data.test">
+                    <!-- TODO: No idea why it goes and saves the widget when pressing! -->
+                    <button @click="addImage()" class="uk-button uk-button-primary">{{ 'Add image' | trans}}</button>
                 </div>
             </div>
-            <div class="uk-form-row">
-                <label class="uk-form-label">{{ 'Images' | trans }}</label>
-
-                <div class="uk-form-controls">
-                    <input-image-meta :image.sync="widget.data.image" class="pk-image-max-height"></input-image-meta> <!-- :image.sync="project.image.main" -->
-                </div>
-            </div>
-
         </div>
 
         <div class="pk-width-sidebar pk-width-sidebar-large">
@@ -48,13 +64,22 @@
         },
         replace: false,
         props: ['widget', 'config', 'form'],
-
+        data() {
+            return {
+            }
+        },
         created() {
             this.$options.partials = this.$parent.$options.partials;
+
         },
 
         methods: {
-
+            addImage: function () {
+                this.widget.data.images.push({});
+            },
+            removeImage: function(image){
+                this.widget.data.images.$remove(image);
+            }
         },
     };
     window.Widgets.components['jebster-slideshow-widget:settings'] = module.exports;

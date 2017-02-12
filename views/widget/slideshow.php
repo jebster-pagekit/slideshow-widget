@@ -6,6 +6,13 @@ $view->script('extra-effects-slides', 'slideshow-widget:app/js/jquery.animate-en
 $view->script('superslides', 'slideshow-widget:app/js/jquery.superslides.js');
 //$view->script('slideshow-application', 'slideshow-widget:app/js/application.js', ['superslides', 'jquery']);
 ?>
+<style>
+    .slides-container .text-overlay{
+        color: #fff;
+        margin: 10px 35px;
+        padding: 10px;
+    }
+</style>
 <div id="slideshowWindow" <?php if($config != null): ?> style="height: <?= $config['height'] ?>px;" <?php endif; ?>>
     <div class="loading-container">
         <div class="pulse"></div>
@@ -18,17 +25,20 @@ $view->script('superslides', 'slideshow-widget:app/js/jquery.superslides.js');
                     ?>
                     <li>
                         <img src="<?= $image['src'] ?>" alt="<?= $image['alt'] ?>">
-                        <div class="aef">
-                            <?php if(key_exists('header', $image)): ?>
-                                <h1><?= $image['header'] ?></h1>
-                            <?php endif; ?>
 
-                            <?php if(key_exists('text', $image)): ?>
-                                <div class="contrast">
-                                    <?= $image['text'] ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+                        <?php if(key_exists('header', $image) || key_exists('text', $image)): ?>
+                            <div class="text-overlay">
+                                <?php if(key_exists('header', $image)): ?>
+                                    <h1 class="header"><?= $image['header'] ?></h1>
+                                <?php endif; ?>
+
+                                <?php if(key_exists('text', $image)): ?>
+                                    <div class="text">
+                                        <?= $image['text'] ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                     </li>
                     <?php
                 endforeach;

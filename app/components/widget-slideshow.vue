@@ -112,7 +112,8 @@
             this.widget.data.config = _.merge({
                 animation: 'slide',
                 animation_speed: 'normal',
-                time_interval: 2500
+                time_interval: 2500,
+                pagination: true
             }, this.widget.data.config);
         },
 

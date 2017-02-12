@@ -57,6 +57,35 @@
                     <input id="form-height" class="uk-width-1-1" type="text" v-model="widget.data.config.height">
                 </div>
             </div>
+            <hr>
+            <div class="uk-form-row">
+                <label for="form-animation" class="uk-form-label">{{ 'Animation' | trans }}</label>
+                <div class="uk-form-controls">
+                    <select id="form-animation" v-model="widget.data.config.animation" class="uk-width-1-1">
+                        <option v-for="animation in animationOptions">
+                            {{ animation }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label for="form-speed" class="uk-form-label">{{ 'Speed' | trans }}</label>
+                <div class="uk-form-controls">
+                    <select id="form-speed" v-model="widget.data.config.animation_speed" class="uk-width-1-1">
+                        <option v-for="speed in speedOptions">
+                            {{ speed }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label for="form-time-interval" class="uk-form-label">{{ 'Time interval' | trans }}</label>
+                <div class="uk-form-controls">
+                    <input id="form-time-interval" class="uk-width-1-1" type="number" v-model="widget.data.config.time_interval">
+                </div>
+            </div>
+
+            <hr>
 
             <partial name="settings"></partial>
 
@@ -74,15 +103,22 @@
         props: ['widget', 'config', 'form'],
         data() {
             return {
+                animationOptions: ['slide','fade'],
+                speedOptions: ['slow','normal','fast']
             }
         },
         created() {
             this.$options.partials = this.$parent.$options.partials;
-
+            this.widget.data.config = _.merge({
+                animation: 'slide',
+                animation_speed: 'normal',
+                time_interval: 2500
+            }, this.widget.data.config);
         },
 
         methods: {
             addImage: function () {
+                if(!this.widget.data.images) this.widget.data.images = [];
                 this.widget.data.images.push({});
             },
             removeImage: function(image){

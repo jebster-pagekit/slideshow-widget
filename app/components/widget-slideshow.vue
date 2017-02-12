@@ -110,6 +110,7 @@
         created() {
             this.$options.partials = this.$parent.$options.partials;
             this.widget.data.config = _.merge({
+                height: 290,
                 animation: 'slide',
                 animation_speed: 'normal',
                 time_interval: 2500,

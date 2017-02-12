@@ -2,9 +2,8 @@
 $view->style('superslides', 'slideshow-widget:app/css/superslides.css');
 
 // TODO: Only load if selected in the config
-$view->script('extra-effects-slides', 'slideshow-widget:app/js/jquery.animate-enhanced.js');
-$view->script('superslides', 'slideshow-widget:app/js/jquery.superslides.js');
-//$view->script('slideshow-application', 'slideshow-widget:app/js/application.js', ['superslides', 'jquery']);
+$view->script('extra-effects-slides', 'slideshow-widget:app/js/jquery.animate-enhanced.js', 'jquery');
+$view->script('superslides', 'slideshow-widget:app/js/jquery.superslides.js', 'extra-effects-slides');
 ?>
 <style>
     .slides-container .text-overlay{

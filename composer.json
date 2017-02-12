@@ -1,6 +1,6 @@
 {
   "name": "jebster/slideshow-widget",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "pagekit-extension",
   "title": "Slideshow",
   "description": "Add a slideshow to any position.",

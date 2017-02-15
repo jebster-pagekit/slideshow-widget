@@ -5,13 +5,7 @@ $view->style('superslides', 'slideshow-widget:app/css/superslides.css');
 $view->script('extra-effects-slides', 'slideshow-widget:app/js/jquery.animate-enhanced.js', 'jquery');
 $view->script('superslides', 'slideshow-widget:app/js/jquery.superslides.js', 'extra-effects-slides');
 ?>
-<style>
-    .slides-container .text-overlay{
-        color: #fff;
-        margin: 10px 35px;
-        padding: 10px;
-    }
-</style>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <div id="slideshowWindow" <?php if($config != null): ?> style="height: <?= $config['height'] ?>px;" <?php endif; ?>>
     <div class="loading-container">
         <div class="pulse"></div>
@@ -27,12 +21,14 @@ $view->script('superslides', 'slideshow-widget:app/js/jquery.superslides.js', 'e
 
                         <?php if(key_exists('header', $image) || key_exists('text', $image)): ?>
                             <div class="text-overlay">
-                                <?php if(key_exists('header', $image)): ?>
-                                    <h1 class="header"><?= $image['header'] ?></h1>
+                                <?php if(key_exists('header', $image) && strlen($image['header']) > 0): ?>
+                                    <h1 class="header" <?= key_exists('color', $image) ? 'style="color: '.$image['color'].'; border-color: '.$image['color'].';"' : '' ?>>
+                                        <?= $image['header'] ?>
+                                    </h1>
                                 <?php endif; ?>
 
-                                <?php if(key_exists('text', $image)): ?>
-                                    <div class="text">
+                                <?php if(key_exists('text', $image) && strlen($image['text']) > 0): ?>
+                                    <div class="text" <?= key_exists('color', $image) ? 'style="color: '.$image['color'].'; border-color: '.$image['color'].';"' : '' ?>>
                                         <?= $image['text'] ?>
                                     </div>
                                 <?php endif; ?>

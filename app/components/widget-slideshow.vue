@@ -26,6 +26,7 @@
                     <label class="uk-form-label">{{ 'Header' | trans }}</label>
                     <div class="uk-form-controls">
                         <input type="text" class="uk-form-width-large" v-model="image.header">&nbsp;&nbsp;
+                        <input type="text" class="uk-form-width-small" v-model="image.color" placeholder="#FFFFFF">
                     </div>
                 </div>
                 <div class="uk-form-row">

@@ -68,18 +68,27 @@
     position: relative;
     height: 100%;
 }
+
+.slides-pagination > a.current{
+    background-color: #fff;
+}
+.slides-pagination > a{
+    border: 2px solid #fff;
+}
+
+
 .slides-container .text-overlay .text, .slides-container .text-overlay .header{
     color: #fff;
-    padding: 10px;
-    font-family: lato, sans-serif;
     position: absolute;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    padding: 5px 10px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,.3);
 }
 .slides-container .text-overlay .header{
     top: calc(50% - 30px);
-    line-height: 72px;
+    line-height: 60px;
     font-size: 60px;
     border: 3px solid #fff;
 }

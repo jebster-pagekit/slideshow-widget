@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="uk-form-row">
-                    <button @click="removeImage(image)" class="uk-button uk-button-danger">
+                    <button @click="removeImage(image)" type="button" class="uk-button uk-button-danger">
                         {{ 'Remove image' | trans}}
                     </button>
                 </div>
@@ -45,8 +45,7 @@
 
             <div class="uk-form-row">
                 <div class="uk-form-controls">
-                    <!-- TODO: No idea why it goes and saves the widget when pressing! -->
-                    <button @click="addImage()" class="uk-button uk-button-primary">{{ 'Add image' | trans}}</button>
+                    <button @click="addImage()" type="button" class="uk-button uk-button-primary">{{ 'Add image' | trans}}</button>
                 </div>
             </div>
         </div>

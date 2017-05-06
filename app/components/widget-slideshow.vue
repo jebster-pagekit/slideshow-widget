@@ -109,6 +109,12 @@
         },
         created() {
             this.$options.partials = this.$parent.$options.partials;
+            if(!this.widget.data.config) {
+                this.$set('widget.data.config', []);
+            }
+            if(!this.widget.data.images) {
+                this.$set('widget.data.images', []);
+            }
             this.widget.data.config = _.merge({
                 height: 290,
                 animation: 'slide',
